@@ -1,0 +1,23 @@
+server:
+  port: 8900
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    appname: sc-dashboard
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: sc-consumer  # 要检测的注册在eureka上的服务名
+  clusterNameExpression: "'default'"
+spring:
+  application:
+    name: sc-dashboard
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
